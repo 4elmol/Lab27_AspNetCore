@@ -23,4 +23,12 @@ app.MapGet("/subjects", () => new[] {
     "СП",
 });
 
+app.MapGet("/product/{id}", (int id) => new Product(
+    Id: id,
+    Name: $"Товар #{id}",
+    Price: id * 99.99m,
+    InStock: id % 2 == 0
+));
+
 app.Run();
+record Product(int Id, string Name, decimal Price, bool InStock);
